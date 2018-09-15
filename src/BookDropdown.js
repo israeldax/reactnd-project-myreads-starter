@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default function BookDropdown({ estado = 'none' }) {
+function BookDropdown({ estado = 'none' }) {
   return (
     <select value={estado}>
       <option value="move" disabled>Move to...</option>
@@ -12,4 +13,8 @@ export default function BookDropdown({ estado = 'none' }) {
   );
 }
 
-// export default BookDropdown;
+BookDropdown.prototype = {
+  estado: PropTypes.string
+}
+
+export default BookDropdown;

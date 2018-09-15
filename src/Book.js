@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import BookDropdown from './BookDropdown'
 
-export default function Book({ book }) {
+function Book({ book }) {
   return (
     <li>
       <div className="book">
@@ -18,4 +19,8 @@ export default function Book({ book }) {
   )
 }
 
-// export default Book;
+Book.prototype = {
+  book: PropTypes.object.isRequired
+};
+
+export default Book;

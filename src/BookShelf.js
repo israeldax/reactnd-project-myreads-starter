@@ -1,10 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Book from './Book'
 import { toCamelCase } from './Helper'
 
-// TODO: Adicionar propTypes
-
-export default function BookShelf({ shelfName, books }) {
+const BookShelf = function BookShelf({ shelfName, books }) {
 
   // Camelcase é o formato do valor utilizado pela api
   const shelfValue = toCamelCase(shelfName);
@@ -23,6 +22,12 @@ export default function BookShelf({ shelfName, books }) {
         </ol>
       </div>
     </div>
-  )};
+  )
+};
 
-// export default BookShelf;
+BookShelf.propTypes = {
+  shelfName: PropTypes.string.isRequired,
+  books: PropTypes.array.isRequired
+};
+
+export default BookShelf;
