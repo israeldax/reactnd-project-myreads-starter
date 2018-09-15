@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Book from './Book'
-import { toCamelCase } from './Helper'
+import Book from '../components/Book'
+import { toCamelCase } from '../Util/Helper'
 
 const BookShelf = function BookShelf({ shelfName, books }) {
 
