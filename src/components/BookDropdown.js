@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function BookDropdown({ estado = 'none' }) {
+function BookDropdown({ estado = 'none', changeShelf }) {
   return (
-    <select value={estado}>
+    <select value={estado} onChange={changeShelf} >
       <option value="move" disabled>Move to...</option>
       <option value="currentlyReading">Currently Reading</option>
       <option value="wantToRead">Want to Read</option>
@@ -14,7 +14,8 @@ function BookDropdown({ estado = 'none' }) {
 }
 
 BookDropdown.prototype = {
-  estado: PropTypes.string
+  estado: PropTypes.string,
+  changeShelf: PropTypes.func.isRequired
 }
 
 export default BookDropdown;

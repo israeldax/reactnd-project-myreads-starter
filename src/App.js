@@ -6,19 +6,36 @@ import Search from './pages/Search'
 import './App.css'
 
 class BooksApp extends React.Component {
-  state = { books: [] }
 
+  constructor(props) {
+    super(props);
+    this.state = { books: [] }
+    this.updateShelf = this.updateShelf.bind(this)
+  }
+
+  // TODO: Implementar localStorage
   componentDidMount() {
     const books = BooksAPI.getAll().then(books => {
       this.setState({ books });
     });
   }
 
+  updateShelf(book, newShelfValue) {
+    book.shelf = newShelfValue
+    BooksAPI.update(book, newShelfValue)
+
+    let booksDidntChange = this.state.books.filter(oldBook => oldBook.id !== book.id)
+    if (newShelfValue !== 'none')
+      booksDidntChange.push(book)
+    this.setState({ books: booksDidntChange })
+  }
+
+  // TODO: fazer um 404
   render() {
     return (
       <div className="app">
-        <Route exact path="/" render={ () => <Home books={this.state.books}/> }/>
-        <Route path="/search" component={Search} />
+        <Route exact path="/" render={ () => <Home books={this.state.books} changeShelf={this.updateShelf} /> }/>
+        <Route path="/search" render={ () => <Search changeShelf={this.updateShelf} /> }/>
       </div>
     )
   }

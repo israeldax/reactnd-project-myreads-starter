@@ -4,16 +4,16 @@ import PropTypes from 'prop-types'
 import BookShelf from '../components/BookShelf'
 import PageTitle from '../components/PageTitle'
 
-function Home({ books }) {
+function Home({ books, changeShelf }) {
   return (
     <div className="list-books">
       <PageTitle title="MyReads" />
 
       <div className="list-books-content">
         <div>
-          <BookShelf shelfName="Currently Reading" books={books} />
-          <BookShelf shelfName="Want to Read" books={books} />
-          <BookShelf shelfName="Read" books={books} />
+          <BookShelf shelfName="Currently Reading" books={books} changeShelf={changeShelf} />
+          <BookShelf shelfName="Want to Read" books={books} changeShelf={changeShelf} />
+          <BookShelf shelfName="Read" books={books} changeShelf={changeShelf} />
         </div>
       </div>
 
@@ -25,7 +25,8 @@ function Home({ books }) {
 }
 
 Home.prototype = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  changeShelf: PropTypes.func.isRequired
 }
 
 export default Home;

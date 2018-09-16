@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BookDropdown from '../components/BookDropdown'
 
-function Book({ book }) {
+function Book({ book, changeShelf }) {
 
   const authors = book.authors ? book.authors : [];
   const imageLinks = book.imageLinks ? book.imageLinks : {};
@@ -13,7 +13,7 @@ function Book({ book }) {
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${imageLinks.thumbnail})` }}></div>
           <div className="book-shelf-changer">
-            <BookDropdown estado={book.shelf} />
+            <BookDropdown estado={book.shelf} changeShelf={(e) => changeShelf(book, e.target.value)} />
           </div>
         </div>
         <div className="book-title">{book.title}</div>
@@ -23,8 +23,9 @@ function Book({ book }) {
   )
 }
 
-Book.prototype = {
-  book: PropTypes.object.isRequired
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  changeShelf: PropTypes.func.isRequired
 };
 
 export default Book;

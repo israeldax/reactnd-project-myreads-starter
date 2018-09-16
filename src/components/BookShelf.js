@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Book from '../components/Book'
 import { toCamelCase } from '../Util/Helper'
 
-const BookShelf = function BookShelf({ shelfName, books }) {
+function BookShelf({ shelfName, books, changeShelf }) {
 
   // Camelcase é o formato do valor utilizado pela api
   const shelfValue = toCamelCase(shelfName);
@@ -16,7 +16,7 @@ const BookShelf = function BookShelf({ shelfName, books }) {
         <ol className="books-grid">
           {
             filteredbooks.length > 0 ?
-              filteredbooks.map(book => <Book key={book.id} book={book} />)
+              filteredbooks.map(book => <Book key={book.id} book={book} changeShelf={changeShelf} />)
               : 'Não há livros nessa prateleira'
           }
         </ol>
@@ -27,7 +27,8 @@ const BookShelf = function BookShelf({ shelfName, books }) {
 
 BookShelf.propTypes = {
   shelfName: PropTypes.string.isRequired,
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  changeShelf: PropTypes.func.isRequired
 };
 
 export default BookShelf;

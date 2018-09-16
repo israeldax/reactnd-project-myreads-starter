@@ -1,13 +1,37 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../Util/BooksAPI'
 import Book from '../components/Book'
 
 class Search extends Component {
 
-  state = {
-    search: '',
-    searchedBooks: []
+  constructor(props) {
+    super(props)
+    this.state = {
+      search: '',
+      searchedBooks: []
+    }
+    this.updateShelf = this.updateShelf.bind(this)
+  }
+
+  static propTypes = {
+    changeShelf: PropTypes.func.isRequired
+  }
+
+  updateShelf(book, newShelfValue) {
+    // Atualiza estante no componente HOME
+    this.props.changeShelf(book, newShelfValue)
+
+    // Renderiza livro com novo valor
+    let newState = this.state.searchedBooks.map(oldBook => {
+      if (oldBook.id === book.id)
+        return book
+      else
+        return oldBook
+    })
+
+    this.setState({ books: newState })
   }
 
   handleSearch(e) {
@@ -25,7 +49,7 @@ class Search extends Component {
   }
 
   render() {
-    const { search, searchedBooks } = this.state;
+    const { search, searchedBooks } = this.state
 
     return (
       <div className="search-books">
@@ -40,13 +64,22 @@ class Search extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" value={search} onChange={(e) => this.handleSearch(e.target.value)} placeholder="Search by title or author"/>
+            <input
+              type="text" value={search}
+              onChange={(e) => this.handleSearch(e.target.value)}
+              placeholder="Search by title or author"
+            />
 
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {searchedBooks.error ? '' : searchedBooks.map(book => <Book key={book.id} book={book} />)}
+            {
+              searchedBooks.error ? '' :
+              searchedBooks.map(book =>
+                <Book key={book.id} book={book} changeShelf={this.updateShelf} />
+              )
+            }
           </ol>
         </div>
       </div>
