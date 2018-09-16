@@ -15,7 +15,7 @@ class BooksApp extends React.Component {
 
   // TODO: Implementar localStorage
   componentDidMount() {
-    const books = BooksAPI.getAll().then(books => {
+    BooksAPI.getAll().then(books => {
       this.setState({ books })
     })
   }
