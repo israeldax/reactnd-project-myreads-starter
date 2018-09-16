@@ -10,7 +10,7 @@ function BookDropdown({ estado = 'none', changeShelf }) {
       <option value="read">Read</option>
       <option value="none">None</option>
     </select>
-  );
+  )
 }
 
 BookDropdown.prototype = {
@@ -18,4 +18,4 @@ BookDropdown.prototype = {
   changeShelf: PropTypes.func.isRequired
 }
 
-export default BookDropdown;
+export default BookDropdown

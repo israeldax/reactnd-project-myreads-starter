@@ -4,8 +4,8 @@ import BookDropdown from '../components/BookDropdown'
 
 function Book({ book, changeShelf }) {
 
-  const authors = book.authors ? book.authors : [];
-  const imageLinks = book.imageLinks ? book.imageLinks : {};
+  const authors = book.authors || []
+  const imageLinks = book.imageLinks || {}
 
   return (
     <li>
@@ -26,6 +26,6 @@ function Book({ book, changeShelf }) {
 Book.propTypes = {
   book: PropTypes.object.isRequired,
   changeShelf: PropTypes.func.isRequired
-};
+}
 
-export default Book;
+export default Book

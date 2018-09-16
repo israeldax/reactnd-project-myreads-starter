@@ -21,7 +21,7 @@ function Home({ books, changeShelf }) {
         <Link to="/search">Add a book</Link>
       </div>
     </div>
-  );
+  )
 }
 
 Home.prototype = {
@@ -29,4 +29,4 @@ Home.prototype = {
   changeShelf: PropTypes.func.isRequired
 }
 
-export default Home;
+export default Home

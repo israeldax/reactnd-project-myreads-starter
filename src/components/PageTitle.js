@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import PropTypes from 'prop-types'
 
 function PageTitle({ title }) {
@@ -11,6 +11,6 @@ function PageTitle({ title }) {
 
 PageTitle.propTypes = {
   title: PropTypes.string
-};
+}
 
-export default PageTitle;
+export default PageTitle

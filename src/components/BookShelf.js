@@ -6,8 +6,8 @@ import { toCamelCase } from '../Util/Helper'
 function BookShelf({ shelfName, books, changeShelf }) {
 
   // Camelcase é o formato do valor utilizado pela api
-  const shelfValue = toCamelCase(shelfName);
-  const filteredbooks = books.filter(book => book.shelf === shelfValue);
+  const shelfValue = toCamelCase(shelfName)
+  const filteredbooks = books.filter(book => book.shelf === shelfValue)
 
   return (
     <div className="bookshelf">
@@ -23,12 +23,12 @@ function BookShelf({ shelfName, books, changeShelf }) {
       </div>
     </div>
   )
-};
+}
 
 BookShelf.propTypes = {
   shelfName: PropTypes.string.isRequired,
   books: PropTypes.array.isRequired,
   changeShelf: PropTypes.func.isRequired
-};
+}
 
-export default BookShelf;
+export default BookShelf

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom';
+import { Route } from 'react-router-dom'
 import * as BooksAPI from './Util/BooksAPI'
 import Home from './pages/Home'
 import Search from './pages/Search'
@@ -8,7 +8,7 @@ import './App.css'
 class BooksApp extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = { books: [] }
     this.updateShelf = this.updateShelf.bind(this)
   }
@@ -16,8 +16,8 @@ class BooksApp extends React.Component {
   // TODO: Implementar localStorage
   componentDidMount() {
     const books = BooksAPI.getAll().then(books => {
-      this.setState({ books });
-    });
+      this.setState({ books })
+    })
   }
 
   updateShelf(book, newShelfValue) {

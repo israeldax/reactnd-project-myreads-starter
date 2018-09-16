@@ -76,15 +76,15 @@ class Search extends Component {
           <ol className="books-grid">
             {
               searchedBooks.error ? '' :
-              searchedBooks.map(book =>
-                <Book key={book.id} book={book} changeShelf={this.updateShelf} />
-              )
+                searchedBooks.map(book =>
+                  <Book key={book.id} book={book} changeShelf={this.updateShelf} />
+                )
             }
           </ol>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Search;
+export default Search
