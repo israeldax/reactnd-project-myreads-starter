@@ -18,4 +18,8 @@ BookDropdown.prototype = {
   changeShelf: PropTypes.func.isRequired
 }
 
+BookDropdown.prototype = {
+  estado: 'none'
+}
+
 export default BookDropdown

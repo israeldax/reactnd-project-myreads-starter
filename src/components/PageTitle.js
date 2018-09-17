@@ -13,4 +13,8 @@ PageTitle.propTypes = {
   title: PropTypes.string
 }
 
+PageTitle.defaultProps = {
+  title: ''
+}
+
 export default PageTitle

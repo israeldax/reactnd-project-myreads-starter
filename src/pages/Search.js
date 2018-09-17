@@ -38,7 +38,7 @@ class Search extends Component {
     const searchTerm = e.trim()
     this.setState({ search: searchTerm })
 
-    if (searchTerm === "") {
+    if (searchTerm === '') {
       this.setState({ searchedBooks: [] })
       return
     }
