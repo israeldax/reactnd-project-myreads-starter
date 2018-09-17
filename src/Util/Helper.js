@@ -1,4 +1,5 @@
 /**
+ * Fonte: https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
  * @description Retorna string recebido em formato camel case
  * @param {string} texto String em qualquer formato
  * @returns {string} String no formato camel case
@@ -8,6 +9,7 @@ export function toCamelCase(str) {
     return index === 0 ? letter.toLowerCase() : letter.toUpperCase()
   }).replace(/\s+/g, '')
 }
+
 
 /**
  * @description Componente que só exibe children se passar no teste
