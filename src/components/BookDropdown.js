@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function BookDropdown({ estado = 'none', changeShelf }) {
+function BookDropdown({ estado, changeShelf }) {
   return (
     <select value={estado} onChange={changeShelf} >
       <option value="move" disabled>Move to...</option>
@@ -13,12 +13,12 @@ function BookDropdown({ estado = 'none', changeShelf }) {
   )
 }
 
-BookDropdown.prototype = {
+BookDropdown.propType = {
   estado: PropTypes.string,
   changeShelf: PropTypes.func.isRequired
 }
 
-BookDropdown.prototype = {
+BookDropdown.defaultProps = {
   estado: 'none'
 }
 
