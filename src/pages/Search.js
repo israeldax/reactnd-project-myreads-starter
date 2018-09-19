@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {debounce} from 'lodash'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../Util/BooksAPI'
@@ -30,17 +31,26 @@ class Search extends Component {
     this.setState({ books: newState })
   }
 
-  async handleSearch(e) {
+  /**
+   * @description Busca livros de acordo com a searchTerm passada e atualiza estado
+   * @argument string query
+   */
+  updateSearchedBooks = debounce(async (searchTerm) => {
+    const searchedBooks = await BooksAPI.search(searchTerm, 20)
+    this.setState({ searchedBooks })
+  }, 600)
+
+
+  handleSearch = (e) => {
     const searchTerm = e.trim()
-    this.setState({ search: searchTerm })
 
     if (searchTerm === '') {
-      this.setState({ searchedBooks: [] })
+      this.setState({ search: '', searchedBooks: [] })
       return
     }
 
-    const searchedBooks = await BooksAPI.search(searchTerm, 20)
-    this.setState({ searchedBooks })
+    this.setState({ search: searchTerm })
+    this.updateSearchedBooks(searchTerm)
   }
 
   render() {

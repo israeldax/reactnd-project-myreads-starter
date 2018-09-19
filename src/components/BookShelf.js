@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {camelCase} from 'lodash'
 import Book from '../components/Book'
-import { toCamelCase } from '../Util/Helper'
 
 function BookShelf({ shelfName, books, changeShelf }) {
 
   // Camelcase é o formato do valor utilizado pela api
-  const shelfValue = toCamelCase(shelfName)
+  const shelfValue = camelCase(shelfName)
   const filteredbooks = books.filter(book => book.shelf === shelfValue)
 
   return (
