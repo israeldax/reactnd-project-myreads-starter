@@ -9,7 +9,8 @@ class Search extends Component {
 
   state = {
     search: '',
-    searchedBooks: []
+    searchedBooks: [],
+    lastEventTriggeredTime: Date.now()
   }
 
   static propTypes = {
@@ -35,22 +36,28 @@ class Search extends Component {
    * @description Busca livros de acordo com a searchTerm passada e atualiza estado
    * @argument string query
    */
-  updateSearchedBooks = debounce(async (searchTerm) => {
+  updateSearchedBooks = debounce(async (searchTerm, lastEventTriggeredTime) => {
     const searchedBooks = await BooksAPI.search(searchTerm, 20)
+    if(lastEventTriggeredTime > this.state.lastEventTriggeredTime)
     this.setState({ searchedBooks })
   }, 600)
 
 
   handleSearch = (e) => {
     const searchTerm = e.trim()
+    const lastEventTriggeredTime = Date.now()
 
     if (searchTerm === '') {
-      this.setState({ search: '', searchedBooks: [] })
+      this.setState({
+        search: '',
+        searchedBooks: [],
+        lastEventTriggeredTime
+      })
       return
     }
 
-    this.setState({ search: searchTerm })
-    this.updateSearchedBooks(searchTerm)
+    this.setState({ search: searchTerm, lastEventTriggeredTime })
+    this.updateSearchedBooks(searchTerm, lastEventTriggeredTime)
   }
 
   render() {
