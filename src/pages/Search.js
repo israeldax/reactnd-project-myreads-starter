@@ -6,20 +6,16 @@ import Book from '../components/Book'
 
 class Search extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      search: '',
-      searchedBooks: []
-    }
-    this.updateShelf = this.updateShelf.bind(this)
+  state = {
+    search: '',
+    searchedBooks: []
   }
 
   static propTypes = {
     changeShelf: PropTypes.func.isRequired
   }
 
-  updateShelf(book, newShelfValue) {
+  updateShelf = (book, newShelfValue) => {
     // Atualiza estante no componente HOME
     this.props.changeShelf(book, newShelfValue)
 
