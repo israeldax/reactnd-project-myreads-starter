@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {debounce} from 'lodash'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../Util/BooksAPI'
@@ -8,7 +9,7 @@ class Search extends Component {
 
   state = {
     search: '',
-    searchedBooks: []
+    searchedBooks: [],
   }
 
   static propTypes = {
@@ -18,7 +19,6 @@ class Search extends Component {
   updateShelf = (book, newShelfValue) => {
     // Atualiza estante no componente HOME
     this.props.changeShelf(book, newShelfValue)
-
     // Renderiza livro com novo valor
     let newState = this.state.searchedBooks.map(oldBook => {
       if (oldBook.id === book.id)
@@ -26,21 +26,23 @@ class Search extends Component {
       else
         return oldBook
     })
-
     this.setState({ books: newState })
   }
 
-  async handleSearch(e) {
-    const searchTerm = e.trim()
-    this.setState({ search: searchTerm })
-
-    if (searchTerm === '') {
+  updateSearchedBooks = debounce(async () => {
+    const {search} = this.state
+    if(search === '') {
       this.setState({ searchedBooks: [] })
       return
     }
-
-    const searchedBooks = await BooksAPI.search(searchTerm, 20)
+    const searchedBooks = await BooksAPI.search(search, 20)
     this.setState({ searchedBooks })
+  }, 500)
+
+
+  handleSearch = (searchTerm) => {
+    this.setState({ search: searchTerm })
+    this.updateSearchedBooks()
   }
 
   render() {
@@ -61,7 +63,7 @@ class Search extends Component {
             */}
             <input
               type="text" value={search}
-              onChange={(e) => this.handleSearch(e.target.value)}
+              onChange={(e) => this.handleSearch(e.target.value.trim())}
               placeholder="Search by title or author"
             />
 
