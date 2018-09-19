@@ -30,7 +30,7 @@ class Search extends Component {
     this.setState({ books: newState })
   }
 
-  handleSearch(e) {
+  async handleSearch(e) {
     const searchTerm = e.trim()
     this.setState({ search: searchTerm })
 
@@ -39,9 +39,8 @@ class Search extends Component {
       return
     }
 
-    BooksAPI.search(searchTerm, 20).then(searchedBooks =>
-      this.setState({ searchedBooks })
-    )
+    const searchedBooks = await BooksAPI.search(searchTerm, 20)
+    this.setState({ searchedBooks })
   }
 
   render() {
