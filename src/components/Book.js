@@ -13,7 +13,7 @@ function Book({ book, changeShelf }) {
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${imageLinks.thumbnail})` }}></div>
           <div className="book-shelf-changer">
-            <BookDropdown estado={book.shelf} changeShelf={(e) => changeShelf(book, e.target.value)} />
+            <BookDropdown shelf={book.shelf} changeShelf={(e) => changeShelf(book, e.target.value)} />
           </div>
         </div>
         <div className="book-title">{book.title}</div>

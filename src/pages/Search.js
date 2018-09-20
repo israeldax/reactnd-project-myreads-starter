@@ -17,9 +17,9 @@ class Search extends Component {
   }
 
   updateShelf = (book, newShelfValue) => {
-    // Atualiza estante no componente HOME
+    // Update Home component shelf
     this.props.changeShelf(book, newShelfValue)
-    // Renderiza livro com novo valor
+    // Render book with new value
     let newState = this.state.searchedBooks.map(oldBook => {
       if (oldBook.id === book.id)
         return book

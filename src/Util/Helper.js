@@ -1,7 +1,7 @@
 /**
- * @description Componente que só exibe children se passar no teste
+ * @description This component just render the child if test is true
  * @param {boolean} teste
- * @param {*} children
+ * @param {node} children
  */
 export function If({ test, children }) {
   return test ? children : false

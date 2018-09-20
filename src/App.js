@@ -13,7 +13,7 @@ class BooksApp extends React.Component {
     this.updateShelf = this.updateShelf.bind(this)
   }
 
-  // TODO: Implementar localStorage
+  // TODO: Maybe implement localStorage
   async componentDidMount() {
     const books = await BooksAPI.getAll()
     this.setState({ books })
@@ -29,7 +29,7 @@ class BooksApp extends React.Component {
     this.setState({ books: booksDidntChange })
   }
 
-  // TODO: fazer um 404
+  // TODO: Create a 404 page
   render() {
     return (
       <div className="app">

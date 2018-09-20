@@ -1,25 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function BookDropdown({ estado, changeShelf }) {
+function BookDropdown({ shelf, changeShelf }) {
   return (
-    <select value={estado} onChange={changeShelf} >
+    <select value={shelf} onChange={changeShelf} >
       <option value="move" disabled>Move to...</option>
-      <option value="currentlyReading" className={estado === 'currentlyReading'? 'chose' : ''}>Currently Reading</option>
-      <option value="wantToRead" className={estado === 'wantToRead'? 'chose' : ''}>Want to Read</option>
-      <option value="read" className={estado === 'read'? 'chose' : ''}>Read</option>
-      <option value="none" className={estado === 'none'? 'chose' : ''}>None</option>
+      <option value="currentlyReading" className={shelf === 'currentlyReading'? 'chose' : ''}>Currently Reading</option>
+      <option value="wantToRead" className={shelf === 'wantToRead'? 'chose' : ''}>Want to Read</option>
+      <option value="read" className={shelf === 'read'? 'chose' : ''}>Read</option>
+      <option value="none" className={shelf === 'none'? 'chose' : ''}>None</option>
     </select>
   )
 }
 
 BookDropdown.propType = {
-  estado: PropTypes.string,
+  shelf: PropTypes.string,
   changeShelf: PropTypes.func.isRequired
 }
 
 BookDropdown.defaultProps = {
-  estado: 'none'
+  shelf: 'none'
 }
 
 export default BookDropdown
