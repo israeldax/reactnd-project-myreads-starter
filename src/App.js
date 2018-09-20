@@ -31,10 +31,12 @@ class BooksApp extends React.Component {
 
   // TODO: fazer um 404
   render() {
+    const { books } = this.state
+
     return (
       <div className="app">
-        <Route exact path="/" render={ () => <Home books={this.state.books} changeShelf={this.updateShelf} /> }/>
-        <Route path="/search" render={ () => <Search changeShelf={this.updateShelf} /> }/>
+        <Route exact path="/" render={ () => <Home books={books} changeShelf={this.updateShelf} /> }/>
+        <Route path="/search" render={ () => <Search shelfBooks={books} changeShelf={this.updateShelf} /> }/>
       </div>
     )
   }

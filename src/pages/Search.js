@@ -19,14 +19,14 @@ class Search extends Component {
   updateShelf = (book, newShelfValue) => {
     // Atualiza estante no componente HOME
     this.props.changeShelf(book, newShelfValue)
-    // Renderiza livro com novo valor
-    let newState = this.state.searchedBooks.map(oldBook => {
-      if (oldBook.id === book.id)
-        return book
-      else
-        return oldBook
-    })
-    this.setState({ books: newState })
+    // // Renderiza livro com novo valor
+    // let newState = this.state.searchedBooks.map(oldBook => {
+    //   if (oldBook.id === book.id)
+    //     return book
+    //   else
+    //     return oldBook
+    // })
+    // this.setState({ books: newState })
   }
 
   updateSearchedBooks = debounce(async () => {
@@ -47,6 +47,7 @@ class Search extends Component {
 
   render() {
     const { search, searchedBooks } = this.state
+    const { shelfBooks } = this.props
 
     return (
       <div className="search-books">
@@ -74,7 +75,7 @@ class Search extends Component {
             {
               searchedBooks.error ? '' :
                 searchedBooks.map(book =>
-                  <Book key={book.id} book={book} changeShelf={this.updateShelf} />
+                  <Book key={book.id} book={book} shelfbooks={shelfBooks} changeShelf={this.updateShelf} />
                 )
             }
           </ol>
