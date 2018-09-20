@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {debounce} from 'lodash'
+import {debounce, findIndex} from 'lodash'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../Util/BooksAPI'
@@ -16,28 +16,24 @@ class Search extends Component {
     changeShelf: PropTypes.func.isRequired
   }
 
-  updateShelf = (book, newShelfValue) => {
-    // Atualiza estante no componente HOME
-    this.props.changeShelf(book, newShelfValue)
-    // Renderiza livro com novo valor
-    let newState = this.state.searchedBooks.map(oldBook => {
-      if (oldBook.id === book.id)
-        return book
-      else
-        return oldBook
-    })
-    this.setState({ books: newState })
-  }
-
+  /**
+   * @description Fetch books and updates shelf value according with Home component books
+   */
   updateSearchedBooks = debounce(async () => {
     const {search} = this.state
     if(search === '') {
       this.setState({ searchedBooks: [] })
       return
     }
+
     const searchedBooks = await BooksAPI.search(search, 20)
+    this.props.shelfBooks.forEach(book => {
+      const sameBookPosition = findIndex(searchedBooks, {id: book.id})
+      if (sameBookPosition !== -1) searchedBooks[sameBookPosition].shelf = book.shelf
+    })
+
     this.setState({ searchedBooks })
-  }, 500)
+  }, 400)
 
 
   handleSearch = (searchTerm) => {
@@ -47,6 +43,7 @@ class Search extends Component {
 
   render() {
     const { search, searchedBooks } = this.state
+    const { shelfBooks, changeShelf } = this.props
 
     return (
       <div className="search-books">
@@ -74,7 +71,7 @@ class Search extends Component {
             {
               searchedBooks.error ? '' :
                 searchedBooks.map(book =>
-                  <Book key={book.id} book={book} changeShelf={this.updateShelf} />
+                  <Book key={book.id} book={book} changeShelf={changeShelf} />
                 )
             }
           </ol>

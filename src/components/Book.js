@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {find} from 'lodash'
 import BookDropdown from '../components/BookDropdown'
 
 function Book({ book, changeShelf }) {
-
   const authors = book.authors || []
   const imageLinks = book.imageLinks || {}
 
