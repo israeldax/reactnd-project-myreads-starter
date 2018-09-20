@@ -160,7 +160,9 @@ body, .app {
   opacity: 0;
   cursor: pointer;
 }
-
+.chose {
+  font-weight: bold;
+}
 /* book cover */
 
 .book-cover {
