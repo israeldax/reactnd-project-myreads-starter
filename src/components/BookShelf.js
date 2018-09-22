@@ -5,7 +5,7 @@ import Book from '../components/Book'
 
 function BookShelf({ shelfName, books, changeShelf }) {
 
-  // Camelcase é o formato do valor utilizado pela api
+  // Camelcase is the shape of the shelf value used in the API
   const shelfValue = camelCase(shelfName)
   const filteredbooks = books.filter(book => book.shelf === shelfValue)
 
@@ -17,7 +17,7 @@ function BookShelf({ shelfName, books, changeShelf }) {
           {
             filteredbooks.length > 0 ?
               filteredbooks.map(book => <Book key={book.id} book={book} changeShelf={changeShelf} />)
-              : 'Não há livros nessa prateleira'
+              : 'There is no books in this shelf'
           }
         </ol>
       </div>
