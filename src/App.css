@@ -122,6 +122,15 @@ body, .app {
 .book {
   width: 140px;
 }
+.rating {
+  width: 100%;
+}
+.rating small {
+  float: right;
+  padding: 5px 11px 0 0;
+  color: #999;
+  font-size: 0.7em;
+}
 .book-title,
 .book-authors {
   font-size: 0.8em;

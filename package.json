@@ -3,7 +3,9 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
+    "react-css-themr": "^2.1.2",
     "react-dom": "^16.3.2",
+    "react-rater-plus": "^0.2.0",
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {

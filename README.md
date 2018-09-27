@@ -2,9 +2,9 @@
 
 MyReads is an application that lets you keep track of your books in shelves (currently reading, wanna read and already read). This is the final assessment of the Udacity's first module React course. This app focus in the "react" part, not worrying too much in the design.
 
-#### Added features
+#### Features to be assessed
 
-- ~~Rating information~~ (not yet)
+- Rating information
 - ~~Tests with Jest~~ (not yet)
 - Loadsh
 - Debounce when searching
