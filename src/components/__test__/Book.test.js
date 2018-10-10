@@ -6,61 +6,68 @@ import Book from '../Book'
 describe('Component [Book]', () => {
 
   const mockChangeShelf = jest.fn()
-  const book = [
-    {
-      id: '1',
-      title: '12 Rules for Life',
-      authors: ['Jordan Peterson'],
-      imageLinks: { thumbnail: null },
-      shelf: 'read',
-      rating: 4.5,
-      ratingCount: 317
-    }
-  ]
-  
-  const component = shallow(
-    <Book key={book.id} book={book} changeShelf={mockChangeShelf} />
-  )
+  let book = {
+    id: '1',
+    title: '12 Rules for Life',
+    authors: ['Jordan Peterson', 'Others' ],
+    imageLinks: { thumbnail: null },
+    shelf: 'read',
+    rating: 4.5,
+    ratingCount: 317
+  }
 
   it('Show title', () => {
-    const title = component.find('.book-title')
-    expect(title).toHaveLength(1)
-    expect(title.text()).toContain(book.title)
+    const component = shallow(
+      <Book key={book.id} book={book} changeShelf={mockChangeShelf} />
+    )
+    const wrapper = component.find('.book-title')
+    expect(wrapper).toHaveLength(1)
+    expect(wrapper.text()).toContain(book.title)
   })
 
   it('Show cover', () => {
-    const cover = component.find('.book-cover')
-    expect(cover).toHaveLength(1)
+    const component = shallow(
+      <Book key={book.id} book={book} changeShelf={mockChangeShelf} />
+    )
+    const wrapper = component.find('.book-cover')
+    expect(wrapper).toHaveLength(1)
   })
 
-  it('Show rating', () => {
+  // it('Show rating', () => {
       
-  })
+  // })
 
-  it('Show ratingCount', () => {
+  // it('Show ratingCount', () => {
       
-  })
+  // })
 
   it('Show authors', () => {
-    const authors = component.find('.book-authors')
-    expect(authors).toHaveLength(2)
+    const component = shallow(
+      <Book key={book.id} book={book} changeShelf={mockChangeShelf} />
+    )
+    const wrapper = component.find('.book-authors')
+    expect(wrapper).toHaveLength(2)
   })
 
-  it('Does\'t brake without cover', () => {
-    const cover = component.find('.book-cover')
-    //expect(cover).
-  })
+  // it('Does\'t brake without cover', () => {
+  //   const cover = component.find('.book-cover')
+  //   //expect(cover).
+  // })
 
   it('Does\'t brake without authors', () => {
-    const authors = component.find('.book-authors')
-    //expect(authors).
+    book.authors = undefined
+    const component = shallow(
+      <Book key={book.id} book={book} changeShelf={mockChangeShelf} />
+    )
+    const wrapper = component.find('.book-authors')
+    expect(wrapper).toHaveLength(0)
   })
 
-  it('Does\'t brake without rating', () => {
+  // it('Does\'t brake without rating', () => {
       
-  })
+  // })
 
-  it('Does\'t brake without rating count', () => {
+  // it('Does\'t brake without rating count', () => {
       
-  })
+  // })
 })

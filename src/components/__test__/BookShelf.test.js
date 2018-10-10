@@ -6,6 +6,7 @@ import Book from '../Book'
 
 describe('Component [BookShelf]', () => {
   const mockChangeShelf = jest.fn()
+  const shelfTitle = 'Read'
   const books = [
     {
       id: '1',
@@ -38,17 +39,18 @@ describe('Component [BookShelf]', () => {
 
   const component = shallow(
     <BookShelf
-      title="Read" books={books} changeShelf={mockChangeShelf}
+      shelfName={shelfTitle} books={books} changeShelf={mockChangeShelf}
     />
   )
 
   it('Show title', () => {
-    const bookCover = component.find('.bookshelf-title');
-    expect(bookCover).toHaveLength(1);
-    expect(title.text()).toContain('read')
+    const wrapper = component.find('.bookshelf-title');
+    expect(wrapper).toHaveLength(1)
+    expect(wrapper.text()).toContain(shelfTitle)
   })
 
   it('Filtering by shelf', () => {
-    expect(component.find(Book)).toHaveLength(2);
+    const wrapper = component.find(Book)
+    expect(wrapper).toHaveLength(2);
   })
 })
