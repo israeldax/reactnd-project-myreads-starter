@@ -16,6 +16,10 @@ class Search extends Component {
     changeShelf: PropTypes.func.isRequired
   }
 
+  componentDidMount() {
+    this.searchInput.focus()
+  }
+
   /**
    * @description Fetch books and updates shelf value according with Home component books
    */
@@ -59,7 +63,7 @@ class Search extends Component {
               you don't find a specific author or title. Every search is limited by search terms.
             */}
             <input
-              type="text" value={search}
+              type="text" value={search} ref={input => { this.searchInput = input }}
               onChange={(e) => this.handleSearch(e.target.value.trim())}
               placeholder="Search by title or author"
             />
