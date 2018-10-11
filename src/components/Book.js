@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Rater from 'react-rater-plus'
-import {find} from 'lodash'
 import BookDropdown from '../components/BookDropdown'
 
 function Book({ book, changeShelf }) {

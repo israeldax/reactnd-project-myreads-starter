@@ -43,7 +43,7 @@ class Search extends Component {
 
   render() {
     const { search, searchedBooks } = this.state
-    const { shelfBooks, changeShelf } = this.props
+    const { changeShelf } = this.props
 
     return (
       <div className="search-books">
